@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: 编译x86-64固件
+name: openwrt-x86-64-builder
 
 on:
   repository_dispatch:
