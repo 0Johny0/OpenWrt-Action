@@ -1,4 +1,4 @@
-name: Config-x86-64 Builder
+name: main_tester
 
 on:
   repository_dispatch:
