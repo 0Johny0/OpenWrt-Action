@@ -18,7 +18,7 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: openwrt-23.05
+  REPO_BRANCH: master
   FEEDS_CONF: config/feeds.conf.default
   CONFIG_FILE: config/.config
   DIY_P1_SH: config/diy-part1.sh
@@ -65,12 +65,7 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: 更新 Feeds 和 golang（v2ray依赖）
-      run: |
-        cd openwrt
-        ./scripts/feeds update -a
-        pushd feeds/packages/lang
-        rm -fr golang && svn co https://github.com/openwrt/packages/tree/master/lang/golang
-        popd
+      run: cd openwrt && ./scripts/feeds update -a
 
     - name: 安装 feeds
       run: cd openwrt && ./scripts/feeds install -a
