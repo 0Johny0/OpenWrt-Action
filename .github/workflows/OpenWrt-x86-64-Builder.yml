@@ -9,6 +9,8 @@
 # This is free software, licensed under the MIT License.
 # See /LICENSE for more information.
 #
+#默认使用master分支，23.05分支仍然存在编译v2ray时因go版本较低导致编译失败的问题
+#
 
 name: OpenWrt-x86-64-Builder
 
@@ -64,7 +66,7 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
-    - name: 更新 Feeds 和 golang（v2ray依赖）
+    - name: 更新 Feeds
       run: cd openwrt && ./scripts/feeds update -a
 
     - name: 安装 feeds
