@@ -69,7 +69,7 @@ jobs:
         cd openwrt
         ./scripts/feeds update -a
         pushd feeds/packages/lang
-        rm -fr golang && svn co https://github.com/openwrt/packages/lang/golang
+        rm -fr golang && svn co https://github.com/openwrt/packages/tree/master/lang/golang
         popd
 
     - name: 安装 feeds
