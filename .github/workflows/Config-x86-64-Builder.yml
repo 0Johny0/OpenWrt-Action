@@ -23,13 +23,13 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: openwrt-23.05
+  REPO_BRANCH: master
   FEEDS_CONF: config/feeds.conf.default
   CONFIG_FILE: config/.config
   DIY_P1_SH: config/diy-part1.sh
   DIY_P2_SH: config/diy-part2.sh
   UPLOAD_BIN_DIR: false
-  UPLOAD_FIRMWARE: true
+  UPLOAD_FIRMWARE: false
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 
@@ -84,8 +84,11 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
     - name: SSH链接管理
-      uses: 0Johny0/ssh2actions@v1.0.0
+      uses: P3TERX/ssh2actions@v1.0.0
       if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+      env:
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
     
     - name: 提取config
       id: organize
