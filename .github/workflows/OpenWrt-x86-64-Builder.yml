@@ -163,6 +163,11 @@ jobs:
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
 
+    - name: 电报通知
+      if: steps.tag.outputs.status == 'success' && !cancelled()
+      run: |
+        curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=我亲爱的✨盆友✨：您的固件#${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}顺利编译完成了！💐" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"
+
     - name: 删除流进程
       uses: Mattraks/delete-workflow-runs@main
       with:
@@ -177,8 +182,3 @@ jobs:
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-
-    - name: 电报通知
-      if: steps.organizer.outputs.status == 'success'
-      run: |
-        curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=我亲爱的✨盆友✨：您的固件#${{env.Run_number}}号)顺利编译完成了！💐" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"
