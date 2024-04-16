@@ -1,6 +1,6 @@
 # 描述
 
-根据 [Use this template](https://github.com/P3TERX/Actions-OpenWrt/generate) 定制自用 `x86_64` 平台 OpenWrt 系统。
+使用 [P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt) 定制自用 `x86_64` 平台 OpenWrt 编译器。
 
 在原版系统下仅扩充以下插件达到最精简效果：
 
